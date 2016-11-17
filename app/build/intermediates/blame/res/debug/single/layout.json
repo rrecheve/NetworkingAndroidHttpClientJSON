@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/Users/rre/AndroidStudioProjects/NetworkingAndroidHttpClientJSON/app/build/intermediates/res/merged/debug/layout/list_item.xml",
+        "source": "/Users/rre/AndroidStudioProjects/NetworkingAndroidHttpClientJSON/app/src/main/res/layout/list_item.xml"
+    },
+    {
+        "merged": "/Users/rre/AndroidStudioProjects/NetworkingAndroidHttpClientJSON/app/build/intermediates/res/merged/debug/layout/activity_main.xml",
+        "source": "/Users/rre/AndroidStudioProjects/NetworkingAndroidHttpClientJSON/app/src/main/res/layout/activity_main.xml"
+    }
+]

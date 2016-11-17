@@ -1,0 +1,7 @@
+#Thu Nov 17 13:12:02 CET 2016
+base.0=/Users/rre/AndroidStudioProjects/NetworkingAndroidHttpClientJSON/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_11f4d4dacee57cb48121fd08130671be7becc554
+renamed.1=classes.dex
+renamed.0=classes2.dex
+file.1=/Users/rre/AndroidStudioProjects/NetworkingAndroidHttpClientJSON/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_a99ed3ac5fc2df3d4e5cefbdf33e185e03bf5d91/classes.dex
+base.1=/Users/rre/AndroidStudioProjects/NetworkingAndroidHttpClientJSON/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_a99ed3ac5fc2df3d4e5cefbdf33e185e03bf5d91
+file.0=/Users/rre/AndroidStudioProjects/NetworkingAndroidHttpClientJSON/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_11f4d4dacee57cb48121fd08130671be7becc554/classes.dex
