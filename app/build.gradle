@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 19
+    compileSdkVersion 26
     buildToolsVersion "25.0.0"
 
     defaultConfig {
         applicationId "course.examples.Networking.AndroidHttpClientJSON"
         minSdkVersion 19
-        targetSdkVersion 19
+        targetSdkVersion 26
     }
 
     buildTypes {
