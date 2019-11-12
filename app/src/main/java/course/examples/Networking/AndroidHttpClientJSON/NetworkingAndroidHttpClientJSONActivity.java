@@ -1,6 +1,6 @@
 package course.examples.Networking.AndroidHttpClientJSON;
 
-import java.io.IOException;
+import java.lang.ref.WeakReference;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +8,6 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.json.JSONTokener;
 
 import android.app.ListActivity;
 
@@ -28,10 +27,17 @@ public class NetworkingAndroidHttpClientJSONActivity extends ListActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		new HttpGetTask().execute();
+		new HttpGetTask(this).execute();
 	}
 
-	private class HttpGetTask extends AsyncTask<Void, Void, List<String>> {
+	private static class HttpGetTask extends AsyncTask<Void, Void, List<String>> {
+
+		private final WeakReference<NetworkingAndroidHttpClientJSONActivity> activityReference;
+
+		// only retain a weak reference to the activity
+		HttpGetTask(NetworkingAndroidHttpClientJSONActivity context) {
+			activityReference = new WeakReference<>(context);
+		}
 
 		private static final String BASE_URL = "api.geonames.org";
 		private static final String JSON_SEG = "earthquakesJSON";
@@ -63,38 +69,43 @@ public class NetworkingAndroidHttpClientJSONActivity extends ListActivity {
 
 		@Override
 		protected void onPostExecute(List<String> result) {
-			setListAdapter(new ArrayAdapter<String>(
-					NetworkingAndroidHttpClientJSONActivity.this,
+			// get a reference to the activity if it is still there
+			NetworkingAndroidHttpClientJSONActivity activity = activityReference.get();
+			if (activity == null || activity.isFinishing()) return;
+
+			activity.setListAdapter(new ArrayAdapter<>(
+					activity,
 					R.layout.list_item, result));
 		}
-	}
 
-	public List<String> jsonToList(JSONObject responseObject) {
-			List<String> result = new ArrayList<String>();
+		private List<String> jsonToList(JSONObject responseObject) {
+				List<String> result = new ArrayList<>();
 
-			try {
-				// Extract value of "earthquakes" key -- a List
-				JSONArray earthquakes = responseObject
-						.getJSONArray(EARTHQUAKE_TAG);
+				try {
+					// Extract value of "earthquakes" key -- a List
+					JSONArray earthquakes = responseObject
+							.getJSONArray(EARTHQUAKE_TAG);
 
-				// Iterate over earthquakes list
-				for (int idx = 0; idx < earthquakes.length(); idx++) {
+					// Iterate over earthquakes list
+					for (int idx = 0; idx < earthquakes.length(); idx++) {
 
-					// Get single earthquake data - a Map
-					JSONObject earthquake = (JSONObject) earthquakes.get(idx);
+						// Get single earthquake data - a Map
+						JSONObject earthquake = (JSONObject) earthquakes.get(idx);
 
-					// Summarize earthquake data as a string and add it to
-					// result
-					result.add(MAGNITUDE_TAG + ":"
-							+ earthquake.get(MAGNITUDE_TAG) + ","
-							+ LATITUDE_TAG + ":"
-							+ earthquake.getString(LATITUDE_TAG) + ","
-							+ LONGITUDE_TAG + ":"
-							+ earthquake.get(LONGITUDE_TAG));
+						// Summarize earthquake data as a string and add it to
+						// result
+						result.add(MAGNITUDE_TAG + ":"
+								+ earthquake.get(MAGNITUDE_TAG) + ","
+								+ LATITUDE_TAG + ":"
+								+ earthquake.getString(LATITUDE_TAG) + ","
+								+ LONGITUDE_TAG + ":"
+								+ earthquake.get(LONGITUDE_TAG));
+					}
+				} catch (JSONException e) {
+					e.printStackTrace();
 				}
-			} catch (JSONException e) {
-				e.printStackTrace();
-			}
-			return result;
+				return result;
+		}
+
 	}
 }

@@ -23,6 +23,7 @@ public class NetworkUtils {
         return buildURL(baseURL, segments, null, null);
     }
 
+    @SafeVarargs
     public static URL buildURL(String baseURL, String[] segments, Pair<String, String>... params) {
 
         Uri.Builder builder = new Uri.Builder();
@@ -79,7 +80,7 @@ public class NetworkUtils {
     public static JSONObject getJSONResponse (URL url) {
         String result = getResponse(url);
 
-        if(result != null && !result.equals("null")) {
+        if(!result.equals("null")) {
             try {
                 return new JSONObject(result);
             } catch (JSONException e) {

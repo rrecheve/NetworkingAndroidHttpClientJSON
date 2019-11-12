@@ -2,11 +2,10 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "25.0.0"
 
     defaultConfig {
         applicationId "course.examples.Networking.AndroidHttpClientJSON"
-        minSdkVersion 19
+        minSdkVersion 26
         targetSdkVersion 26
     }
 
@@ -16,4 +15,8 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
+}
+
+dependencies {
+
 }

@@ -14,7 +14,7 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		final Button loadButton = (Button) findViewById(R.id.button1);
+		final Button loadButton = findViewById(R.id.button1);
 		loadButton.setOnClickListener(new OnClickListener() {
 
 			@Override
